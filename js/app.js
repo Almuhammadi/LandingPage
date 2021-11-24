@@ -14,6 +14,14 @@ for (let sectionIdx = 0; sectionIdx < sections.length; sectionIdx++) {
     navLink.classList.add('menu__link');
     navLink.innerText = sectionName;
 
+    navLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        let navText = this.innerText;
+        
+        // let parent = sections[sectionIdx].parentNode;
+        window.scrollTo(parent.getBoundingClientRect().top);
+    })
+
     navItem.appendChild(navLink);
 
     navBarList.appendChild(navItem);
@@ -25,7 +33,7 @@ let activeSection = sections.item(activeSectionIdx);
 window.addEventListener('scroll', function () {
     for (let sectionIdx = 0; sectionIdx < sections.length; sectionIdx++) {
         let parent = sections[sectionIdx].parentNode;
-        var scrollPosition = parent.getBoundingClientRect().top;
+        let scrollPosition = parent.getBoundingClientRect().top;
 
         if (scrollPosition <= 100 && scrollPosition >= 0) {
             let navItems = navBarList.childNodes;
